@@ -13,6 +13,8 @@ for SHED_PKG_LOCAL_OPTION in "${!SHED_PKG_LOCAL_OPTIONS[@]}"; do
     esac
 done
 # Build and Install
+mkdir -pv build &&
+cd build &&
 cmake -DODROID=1                         \
       -DNOEGL=$SHED_PKG_LOCAL_EGL_OPTION \
       -DNOX11=$SHED_PKG_LOCAL_X11_OPTION  \
