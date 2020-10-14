@@ -1,0 +1,8 @@
+NAME=gl4es
+VERSION=1.1.4
+REVISION=1
+LICENSE=MIT
+SRC=https://github.com/ptitSeb/gl4es/archive/v1.1.4.tar.gz
+SRCMD5=5336dc155189998b45567aeb3ccce80b
+BUILDDEPS=cmake libdrm
+INSTALLDEPS=libdrm mesa
