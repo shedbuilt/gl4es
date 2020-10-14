@@ -15,15 +15,17 @@ done
 # Build and Install
 mkdir -pv build &&
 cd build &&
-cmake -DODROID=1                         \
-      -DNOEGL=$SHED_PKG_LOCAL_EGL_OPTION \
+cmake -DODROID=1                          \
+      -DNOEGL=$SHED_PKG_LOCAL_EGL_OPTION  \
       -DNOX11=$SHED_PKG_LOCAL_X11_OPTION  \
-      -DDEFAULT_ES=2                     \
-      -DCMAKE_INSTALL_PREFIX=/usr        \
+      -DDEFAULT_ES=2                      \
+      -DCMAKE_INSTALL_PREFIX=/usr         \
       .. &&
 make -j $SHED_NUM_JOBS &&
 make DESTDIR="$SHED_FAKE_ROOT" install &&
-# Rearrange and install symlinks
+# Rearrange, install symlinks and pkgconfig
+install -v -dm755 "${SHED_FAKE_ROOT}/usr/lib/pkgconfig" &&
+install -v -m644 "${SHED_PKG_CONTRIB_DIR}/gl.pc" "${SHED_FAKE_ROOT}/usr/lib/pkgconfig" &&
 mv "${SHED_FAKE_ROOT}/usr/lib/gl4es/libGL.so.1" "${SHED_FAKE_ROOT}/usr/lib/" &&
 rmdir "${SHED_FAKE_ROOT}/usr/lib/gl4es" &&
 ln -sv libGL.so.1 "${SHED_FAKE_ROOT}/usr/lib/libGL.so"

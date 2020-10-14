@@ -1,0 +1,10 @@
+prefix=/usr
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: gl
+Description: GL4ES OpenGL to OpenGL ES library
+Version: 1.1.4
+Libs: -L${libdir} -lGL
+Libs.private: -lpthread -pthread -lm -ldl
+Cflags: -I${includedir}
